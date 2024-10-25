@@ -6,6 +6,7 @@ export default class ContactUs extends LightningElement {
     phone;
     email;
     message;
+    isEmailSent = false;
 
     handleMessageChange(event){
         this.message= event.detail.value;
@@ -25,6 +26,7 @@ export default class ContactUs extends LightningElement {
         sendContactUsEmail({ name: this.name,phone: this.phone, email: this.email, message: this.message })
             .then(() => {
                 // Show success toast notification
+                this.isEmailSent =true;
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
